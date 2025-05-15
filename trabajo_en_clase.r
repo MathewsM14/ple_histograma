@@ -27,24 +27,44 @@ hist(temperaturas,
 #############################
 
 temperatura1 <- data.frame(
-  Tunif = rnorm(1000, mean = 31, sd = 2),       # Valores aleatorios decimales con distribución normal
-  Tnorm = runif(1000, min=27, max=36)       # Valores aleatorios decimales con distribución uniforme
+  "Tunif" = rnorm(1000, mean = 31, sd = 2),
+  "Tnorm" = runif(1000, min=27, max=36)
 )
 
 
-hist(temperatura1$Tunif,
-     main = "Histogramas de temperaturas",
+par(mfrow=c(1,2))
+hist(temperatura1$Tunif, 
+     main = "Histograma de distribución uniforme",
      xlab = "Temperatura (°C)",
      ylab = "Frecuencia",
-     col = , 
+     col = "#61686b",
+     border = "black",
+     breaks = 9,
+     xlim = c(27, 36))
+hist(temperatura1$Tnorm,
+     main = "Histograma de distribución normal",
+     xlab = "Temperatura (°C)",
+     ylab = "Frecuencia",
+     col = "lightblue",
      border = "black",
      breaks = 9,
      xlim = c(27, 36))
 
 
-hist(temperatura1$Tnorm,
-     col = rgb(1, 0, 0, 0.5),   
-     border = "black",
-     breaks = 9,
-     add = TRUE)
+Histabla <- function(dataframe){
+    for (i in 1:ncol(dataframe)){
+        if (is.numeric(dataframe[, i])){
+            hist(dataframe[, i], 
+                 main = paste("Histograma de", colnames(dataframe)[i]),
+                 xlab = colnames(dataframe)[i],
+                 ylab = "Frecuencia",
+                 col = "lightblue",
+                 border = "black",
+                 breaks = 9,
+                 xlim = c(min(dataframe[,i]), max(dataframe[,i])))
+        }
+    }
+       
+}
 
+Histabla(temperatura1)
