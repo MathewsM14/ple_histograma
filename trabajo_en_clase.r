@@ -27,8 +27,8 @@ hist(temperaturas,
 #############################
 
 temperatura1 <- data.frame(
-  "Tunif" = rnorm(1000, mean = 31, sd = 2),
-  "Tnorm" = runif(1000, min=27, max=36)
+  "Tnorm" = rnorm(1000, mean = 31, sd = 2),
+  "Tunif" = runif(1000, min=27, max=36)
 )
 
 
@@ -41,6 +41,7 @@ hist(temperatura1$Tunif,
      border = "black",
      breaks = 9,
      xlim = c(27, 36))
+
 hist(temperatura1$Tnorm,
      main = "Histograma de distribución normal",
      xlab = "Temperatura (°C)",
