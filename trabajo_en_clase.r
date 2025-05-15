@@ -27,22 +27,23 @@ hist(temperaturas,
 #############################
 
 temperatura1 <- data.frame(
-  x = rnorm(1000, mean = 31, sd = 2),       # Valores aleatorios decimales con distribución normal
-  y = runif(1000, min=27, max=36)       # Valores aleatorios decimales con distribución uniforme
+  Tunif = rnorm(1000, mean = 31, sd = 2),       # Valores aleatorios decimales con distribución normal
+  Tnorm = runif(1000, min=27, max=36)       # Valores aleatorios decimales con distribución uniforme
 )
 
-hist(temperatura1$x,
-     main = "Histogramas superpuestos",
+
+hist(temperatura1$Tunif,
+     main = "Histogramas de temperaturas",
      xlab = "Temperatura (°C)",
      ylab = "Frecuencia",
-     col = rgb(0.2, 0.4, 0.6, 0.5),  # azul con transparencia
+     col = , 
      border = "black",
      breaks = 9,
      xlim = c(27, 36))
 
 
-hist(temperatura1$y,
-     col = rgb(1, 0, 0, 0.5),         # rojo con transparencia
+hist(temperatura1$Tnorm,
+     col = rgb(1, 0, 0, 0.5),   
      border = "black",
      breaks = 9,
      add = TRUE)
