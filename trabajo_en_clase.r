@@ -9,7 +9,11 @@ hist(temp,
      breaks = 9,
      xlim = c(27, 36))
 
+
+#############################
+
 temperaturas <- runif(100, min = 27, max = 36)
+
 hist(temperaturas, 
      main = "Histograma de temperaturas",
      xlab = "Temperatura (°C)",
@@ -18,3 +22,5 @@ hist(temperaturas,
      border = "black",
      breaks = 9,
      xlim = c(27, 36))
+
+
