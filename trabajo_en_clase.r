@@ -24,3 +24,13 @@ hist(temperaturas,
      xlim = c(27, 36))
 
 
+#############################
+
+temperatura1 <- data.frame(
+  x = rnorm(100),       # Valores aleatorios decimales con distribución normal
+  y = runif(100)       # Valores aleatorios decimales con distribución uniforme
+)
+
+
+  
+  
