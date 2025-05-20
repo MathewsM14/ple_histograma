@@ -90,3 +90,4 @@ tabla <- data.frame(
 )
 
 HistogramasTabla(tabla)
+
