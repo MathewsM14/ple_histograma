@@ -52,54 +52,41 @@ hist(temperatura1$Tnorm,
      xlim = c(27, 36))
 
 
-Histabla <- function(dataframe) {
-    columnas_numericas <- sapply(dataframe, is.numeric)
-    num_vars <- sum(columnas_numericas)
-    
-    par(mfrow = c(ceiling(num_vars / 2), 2))  # Por ejemplo, 2 columnas y filas necesarias
-    
-    for (i in 1:ncol(dataframe)) {
-        if (is.numeric(dataframe[, i])) {
-            hist(dataframe[, i], 
-                 main = paste("Histograma de", colnames(dataframe)[i]),
-                 xlab = colnames(dataframe)[i],
-                 ylab = "Frecuencia",
-                 col = "lightblue",
-                 border = "black",
-                 breaks = "Sturges")
-        }
-    }
-
-    par(mfrow = c(1,1))
-}
-
-Histabla(temperatura1)
-
-
 HistogramasTabla <- function(df){
      namvars <- names(df)
      n <- length(namvars)
      par(mfrow = c(1, n)) # Una fila, n columnas
      for(var in namvars){
           # Histograma para cada variable
-          hist(df[[var]], 
-               main = var, 
-               xlab = "Rangos", 
-               ylab = "Frecuencia", 
-               col = "lightblue", 
-               border = "black")
+          if(is.numeric(df[[var]])){
+               hist(df[[var]], 
+                    main = var, 
+                    xlab = "Rangos", 
+                    ylab = "Frecuencia", 
+                    col = "lightblue", 
+                    border = "black",
+                    breaks = 9)
+          } else{
+               # Gráfico de barras para variables categóricas
+               barplot(table(df[[var]]), 
+                       main = var, 
+                       xlab = "Categoría", 
+                       ylab = "Frecuencia", 
+                       col = "lightblue", 
+                       border = "black")
+          }
      }
      par(mfrow = c(1, 1)) # Regresar a una sola gráfica
 }
 
-tabla2 <- data.frame(
-     "rojo" = c(1, 2, 3, 4, 5),
-     "verde" = c(6, 7, 8, 9, 10),
-     "azul" = c(11, 12, 13, 14, 15),
-     "amarillo" = c(16, 17, 18, 19, 20),
-     "naranja" = c(21, 22, 23, 24, 25),
-     "morado" = c(26, 27, 28, 29, 30)
+
+tabla <- data.frame(
+    "Tunif"=runif(1000,min=25,max=35),
+    "Texp"=rexp(1000,rate = 1/30),
+    "TnormA"=rnorm(1000,mean=0,sd=2),
+    "TnormB"=rnorm(1000,mean=10,sd=2),
+    "Enteros"=sample(1:10,10,replace = TRUE),
+    "Categoricos"=sample(LETTERS[1:26],1000,replace = TRUE)
 )
 
-Histabla(tabla2)
-HistogramasTabla(tabla2)
+HistogramasTabla(tabla)
