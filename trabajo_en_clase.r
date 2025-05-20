@@ -53,7 +53,6 @@ hist(temperatura1$Tnorm,
 
 
 Histabla <- function(dataframe) {
-    # Detectar cuántas columnas numéricas hay
     columnas_numericas <- sapply(dataframe, is.numeric)
     num_vars <- sum(columnas_numericas)
     
@@ -102,4 +101,5 @@ tabla2 <- data.frame(
      "morado" = c(26, 27, 28, 29, 30)
 )
 
+Histabla(tabla2)
 HistogramasTabla(tabla2)
