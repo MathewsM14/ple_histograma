@@ -52,20 +52,54 @@ hist(temperatura1$Tnorm,
      xlim = c(27, 36))
 
 
-Histabla <- function(dataframe){
-    for (i in 1:ncol(dataframe)){
-        if (is.numeric(dataframe[, i])){
+Histabla <- function(dataframe) {
+    # Detectar cuántas columnas numéricas hay
+    columnas_numericas <- sapply(dataframe, is.numeric)
+    num_vars <- sum(columnas_numericas)
+    
+    par(mfrow = c(ceiling(num_vars / 2), 2))  # Por ejemplo, 2 columnas y filas necesarias
+    
+    for (i in 1:ncol(dataframe)) {
+        if (is.numeric(dataframe[, i])) {
             hist(dataframe[, i], 
                  main = paste("Histograma de", colnames(dataframe)[i]),
                  xlab = colnames(dataframe)[i],
                  ylab = "Frecuencia",
                  col = "lightblue",
                  border = "black",
-                 breaks = 9,
-                 xlim = c(min(dataframe[,i]), max(dataframe[,i])))
+                 breaks = "Sturges")
         }
     }
-       
+
+    par(mfrow = c(1,1))
 }
 
 Histabla(temperatura1)
+
+
+HistogramasTabla <- function(df){
+     namvars <- names(df)
+     n <- length(namvars)
+     par(mfrow = c(1, n)) # Una fila, n columnas
+     for(var in namvars){
+          # Histograma para cada variable
+          hist(df[[var]], 
+               main = var, 
+               xlab = "Rangos", 
+               ylab = "Frecuencia", 
+               col = "lightblue", 
+               border = "black")
+     }
+     par(mfrow = c(1, 1)) # Regresar a una sola gráfica
+}
+
+tabla2 <- data.frame(
+     "rojo" = c(1, 2, 3, 4, 5),
+     "verde" = c(6, 7, 8, 9, 10),
+     "azul" = c(11, 12, 13, 14, 15),
+     "amarillo" = c(16, 17, 18, 19, 20),
+     "naranja" = c(21, 22, 23, 24, 25),
+     "morado" = c(26, 27, 28, 29, 30)
+)
+
+HistogramasTabla(tabla2)
