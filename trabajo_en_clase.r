@@ -91,3 +91,24 @@ tabla <- data.frame(
 
 HistogramasTabla(tabla)
 
+write.csv(tabla, file = "datos_ejemplo.csv", row.names = FALSE)
+
+tabla2 <- read.csv("datos_ejemplo.csv")
+
+tablaA <- tabla2[tabla2$Categoricos == "A", ]
+
+mean(tablaA$Tunif)
+
+
+time = sec(0, 1, by=0.01)
+
+tablafuncs <- data.frame(
+     "Tiempo" = time,
+     "Sin" = sin(2 * pi * time),
+     "Cos" = cos(2 * pi * time)
+)
+
+plot(tablafuncs$Tiempo, tablafuncs$Sin, type = "l", col = "blue", lwd = 2,
+     main = "Funciones Trigonométricas",
+     xlab = "Tiempo (s)", ylab = "Valor")
+lines(tablafuncs$Tiempo, tablafuncs$Cos, col = "red", lwd = 2)
