@@ -100,7 +100,7 @@ tablaA <- tabla2[tabla2$Categoricos == "A", ]
 mean(tablaA$Tunif)
 
 
-time = sec(0, 1, by=0.01)
+time = seq(0, 1, by=0.01)
 
 tablafuncs <- data.frame(
      "Tiempo" = time,
@@ -112,3 +112,8 @@ plot(tablafuncs$Tiempo, tablafuncs$Sin, type = "l", col = "blue", lwd = 2,
      main = "Funciones Trigonométricas",
      xlab = "Tiempo (s)", ylab = "Valor")
 lines(tablafuncs$Tiempo, tablafuncs$Cos, col = "red", lwd = 2)
+legend("topright",                         # Posición: puede ser "topleft", "topright", etc.
+       legend = c("Seno", "Coseno"),      # Etiquetas
+       col = c("blue", "red"),            # Colores correspondientes
+       lwd = 2,                           # Grosor de línea
+       lty = 1)  
